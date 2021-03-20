@@ -22,10 +22,7 @@ body {
    font-weight: bold;
    font-size: 24px;
    }
-   .socials{
-       align-self: center;
-       text-align: center;
-   }
+  
 
    
    @media (max-width: 800px){
@@ -34,8 +31,4 @@ body {
        }
    }
 
- 
 
-
- 
-   
