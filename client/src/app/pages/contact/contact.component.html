@@ -1,1 +1,34 @@
-<p>contact works!</p>
+
+<br><br><br>
+    
+    <div style="text-align:center">
+      <h2 style="font-family:verdana">Contact Us</h2>
+      <h4><p style="color:blue">Swing by for a cup of coffee, or leave us a message:</p></h4>
+    </div>
+    <div class="row">
+      <div class="column">
+        <br>
+        <img src="/assets/Images/map.jpg" style="width:100%" >
+      </div>
+      <div class="column" >
+        <form name ="contactform" method="POST" class="getUserInfo" action="/contact.component.html">
+          <div class="info">
+            <label for="fname">First Name</label>
+            <input class="form_element" type="text" id="fname" name="firstname" placeholder="Your name.." onfocus="this.value=''">
+            <label for="lname">Last Name</label>
+            <input class="form_element" type="text" id="lname" name="lastname" placeholder="Your last name.." onfocus="this.value=''">
+            <label for="country">Country</label>
+            <select class="form_element" id="country" name="country" onfocus="this.value=''">
+                <option value="usa">India</option>
+                <option value="canada">Canada</option>
+                <option value="australia">Australia</option>
+                <option value="usa">USA</option>
+            </select>
+            <label for="subject">Subject</label>
+            <textarea class="form_element" id="subject" name="subject" placeholder="Write something.." style="height:170px" onfocus="this.value=''"></textarea>
+          </div>  
+          <input type="button" value="Submit" onclick="results();">
+        </form>
+      </div>
+    </div>
+  
