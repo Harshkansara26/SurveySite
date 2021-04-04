@@ -3,10 +3,13 @@ let router = express.Router();
 
 let surveyTwoController = require('../controllers/surveyTwo');
 
-/* GET Order List page -- READ Operation */
-router.get('/', surveyTwoController.displaySurveyList);
+/* GET Survey List page -- READ Operation */
+router.get('/list', surveyTwoController.displaySurveyList);
 
-/* POST Route for processing the Add Order Page */
+/* POST Route for processing the Add Survey Response */
 router.post('/add', surveyTwoController.processAddPage);
+
+/* GET router for the DELETE Survey Response - DELETE */
+router.delete('/delete/:id', surveyTwoController.performSurveyResponseDeletion);
 
 module.exports = router;

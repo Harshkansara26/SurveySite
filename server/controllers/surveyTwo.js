@@ -39,3 +39,17 @@ module.exports.processAddPage = (req, res, next) => {
         }
     }); 
 }
+
+/* GET router for the DELETE Book page - DELETE */
+module.exports.performSurveyResponseDeletion =  (req, res, next) => {
+    let id = req.params.id;
+    SurveyTwo.remove({_id: id}, (err) =>{
+        if(err) {
+            console.log(err);
+            res.end(err);
+        } else {
+            // refresh book list
+            res.json(id);
+        }
+    });
+};
