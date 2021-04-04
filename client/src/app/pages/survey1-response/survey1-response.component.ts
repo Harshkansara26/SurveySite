@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import {SurveyOneRepository} from 'src/app/model/surveyOne.repository';
 import { surveyPageOne } from 'src/app/model/surveyPageOne.model';
@@ -12,7 +12,7 @@ import { surveyPageOne } from 'src/app/model/surveyPageOne.model';
 })
 export class Survey1ResponseComponent implements OnInit {
 
-  constructor(public repository: SurveyOneRepository){ 
+  constructor(public repository: SurveyOneRepository, private route: ActivatedRoute){ 
 
   }
 
