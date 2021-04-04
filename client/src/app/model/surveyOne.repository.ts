@@ -37,6 +37,12 @@ export class SurveyOneRepository
     return this.dataSource.saveSurveyOne(surveyOne);
   }
 
+  deleteSurveyOneBy(id: string) {
+    this.dataSource.deleteSurveyOne(id).subscribe(response => {
+      const updatedSurveyOne = this.surveyOne.filter(response => response._id !== response);
+      this.surveyOne = [...updatedSurveyOne]
+    });
+  }
 
 
 }

@@ -40,7 +40,12 @@ export class RestDataSource
 
   getSurveyOne(): Observable<surveyPageOne[]>
   {
-    return this.http.get<surveyPageOne[]>(this.baseUrl + 'surveyOne');
+    return this.http.get<surveyPageOne[]>(this.baseUrl + 'surveyOne/list');
+  }
+
+  deleteSurveyOne(id: string) {
+    let backendRouterPath = 'surveyOne/delete/'+id // has to be same as on the backend server
+    return this.http.delete(this.baseUrl + backendRouterPath);
   }
 
   saveSurveyThree(surveyThree: surveyPageThree): Observable<surveyPageThree>
