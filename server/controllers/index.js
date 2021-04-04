@@ -134,11 +134,11 @@ module.exports.processRegisterPage = (req, res, next) => {
 
           
           // TODO - Getting Ready to convert to API
-          res.json({success: true, msg: 'User Registered Successfully!'});
+          //res.json({success: true, msg: 'User Registered Successfully!'});
           
 
           return passport.authenticate('local')(req, res, () => {
-              return res.redirect('User Registered !');
+              return res.redirect('http://localhost:4200/login');
           })
       }
   })

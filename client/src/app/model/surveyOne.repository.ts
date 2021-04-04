@@ -6,30 +6,27 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {surveyPageOne} from './surveyPageOne.model';
 import { RestDataSource } from './rest.datasource';
-
+import { Router } from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class SurveyOneRepository
 {
-  private surveyOne! : surveyPageOne[];
-  private loaded = false;
+  private surveyOne : surveyPageOne[] = [];
+  private response! : surveyPageOne;
+  
+  //private loaded = false;
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(private dataSource: RestDataSource, private router: Router) {
 
-  loadSurveys(): void
-  {
-    this.loaded = true;
-    this.dataSource.getSurveyOne()
-    .subscribe(surveyOne => this.surveyOne = surveyOne);
+    dataSource.getSurveyOne().subscribe(data => {
+      this.surveyOne = data;
+    });
+
   }
 
   getSurveyOne(): surveyPageOne[]
   {
-    if (!this.loaded)
-    {
-      this.loadSurveys();
-    }
-    return this.surveyOne;
+    return [...this.surveyOne]
   }
 
   saveSurveyOne(surveyOne: surveyPageOne): Observable<surveyPageOne>
@@ -38,8 +35,8 @@ export class SurveyOneRepository
   }
 
   deleteSurveyOneBy(id: string) {
-    this.dataSource.deleteSurveyOne(id).subscribe(response => {
-      const updatedSurveyOne = this.surveyOne.filter(response => response._id !== response);
+    this.dataSource.deleteSurveyOne(id).subscribe(response1 => {
+      const updatedSurveyOne = this.surveyOne.filter(response => response._id !== response1);
       this.surveyOne = [...updatedSurveyOne]
     });
   }

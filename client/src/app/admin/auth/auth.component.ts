@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
       this.auth.authenticate(this.user).subscribe(data => {
         if (data.success) {
           this.auth.storeUserData(data.token, data.user);
-          this.router.navigateByUrl('survey');
+          this.router.navigateByUrl('create-survey');
         }
       });
     }
