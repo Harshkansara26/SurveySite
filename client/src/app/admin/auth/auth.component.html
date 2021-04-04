@@ -1,31 +1,43 @@
-<main class="container">
-    <!-- message area -->
-    <div *ngIf='errorMessage != null' class="alert alert-danger">
-        {{ errorMessage }}
-    </div>
 
+  <main class="container">
     <div class="row">
-        <div class="offset-md-4 col-md-4">
-            <h1>Please Login</h1>
-            <form autocomplete='off' #form='ngForm' (ngSubmit)='authenticate(form)'>
-                <fieldset class="form-group">
-                    <label for="username">Username: </label>
-                    <input type="text" class="form-control" name="username" [(ngModel)]='user.username' placeholder="Enter User Name" required
-                        autofocus>
-                </fieldset>
-
-                <fieldset class="form-group">
-                    <label for="password">Password: </label>
-                    <input type="password" class="form-control" name="password" [(ngModel)]='user.password' placeholder="Enter Password" required>
-                </fieldset>
-                <span>or </span><a href="/register" value="Register">Register</a>
-
-
-                <fieldset class="form-group text-right">
-                    <button type="submit" class="btn btn-success" value="Login">Login</button>
-                    <button [routerLink]="['/home']" class="btn btn-warning">Cancel</button>
-                </fieldset>
-            </form>
+      <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-sm-8 offset-sm-1">
+        <div class="bg-danger mt-2 p-2 text-center text-white"
+          *ngIf='errorMessage != null'>
+          {{ errorMessage }}
         </div>
+        <h1>Please Login</h1>
+        <form autocomplete='off' #form='ngForm' (ngSubmit)='authenticate(form)'>
+  
+        <fieldset class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control"
+          [(ngModel)]='user.username'
+          name='username' placeholder='Enter Username'
+          id='username' required autofocus autocomplete='off'>
+        </fieldset>
+  
+        <fieldset class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control"
+          [(ngModel)]='user.password'
+          name='password' placeholder='Enter Password'
+          id='password' required autocomplete='off'>
+        </fieldset>
+        <span>or </span><a href="http://localhost:5000/register" value="Register">Register</a>
+        <fieldset class="form-group text-right">
+          <button class='btn btn-primary m-1' type='submit'>
+            <i class="fas fa-sign-in-alt"></i>
+            Log In
+          </button>
+          <button class='btn btn-secondary m-1' routerLink='/home'>
+            <i class="fas fa-undo"></i>
+            Cancel
+          </button>
+        </fieldset>
+  
+      </form>
+      </div>
     </div>
-</main>
+  </main>
+  
