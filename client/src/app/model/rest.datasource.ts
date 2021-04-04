@@ -9,17 +9,20 @@ import { Observable } from 'rxjs';
 import { surveyPageOne } from './surveyPageOne.model';
 import { surveyPageTwo } from './surveyPageTwo.model';
 import { surveyPageThree } from './surveyPageThree.model';
+import { User } from './user.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const PROTOCOL = 'http';
 const PORT = 5000;
 
+// this is to connect to your backend server
 @Injectable({providedIn: 'root'})
-export class RestDataSource
-{
+export class RestDataSource {
   baseUrl: string;
+  authToken!: string;
+  user!: User;
 
-  private httpOptions =
-  {
+  private httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -27,11 +30,11 @@ export class RestDataSource
     })
   };
 
-  constructor(private http: HttpClient)
-  {
+  constructor(private http: HttpClient, private jwtService: JwtHelperService) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
+  //survey One 
   saveSurveyOne(surveyOne: surveyPageOne): Observable<surveyPageOne>
   {
     console.log(JSON.stringify(surveyOne));
@@ -48,6 +51,31 @@ export class RestDataSource
     return this.http.delete(this.baseUrl + backendRouterPath);
   }
 
+  //survey Two
+  saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>
+  {
+    console.log(JSON.stringify(surveyTwo));
+    return this.http.post<surveyPageTwo>(this.baseUrl + 'surveyTwo/add', surveyTwo);
+  }
+
+  getQuestions(): Observable<surveyPageTwo[]> {
+    let backendRouterPath = 'surveyTwo/list' // has to be same as on the backend server
+    return this.http.get<surveyPageTwo[]>(this.baseUrl + backendRouterPath);
+  }
+
+  surveyTwoDeleteAResponse(id: string) {
+    let backendRouterPath = 'surveyTwo/delete/'+id // has to be same as on the backend server
+    return this.http.delete(this.baseUrl + backendRouterPath);
+  }
+
+  // getAQuestion(id: string): Observable<surveyPageTwo> {
+  //   let backendRouterPath = 'surveyOne/'+id // has to be same as on the backend server
+  //   return this.http.get<surveyPageTwo>(this.baseUrl + backendRouterPath);
+  // }
+
+
+
+  //survey Three
   saveSurveyThree(surveyThree: surveyPageThree): Observable<surveyPageThree>
   {
     console.log(JSON.stringify(surveyThree));
@@ -59,15 +87,27 @@ export class RestDataSource
     return this.http.get<surveyPageThree[]>(this.baseUrl + 'surveyThree');
   }
 
-  saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>
-  {
-    console.log(JSON.stringify(surveyTwo));
-    return this.http.post<surveyPageTwo>(this.baseUrl + 'surveyTwo/add', surveyTwo);
+  
+// authentication
+  storeUserData(token: any, user: User): void {
+    localStorage.setItem('id_token', 'Bearer ' + token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
   }
 
-  getSurveyTwo(): Observable<surveyPageTwo[]>
-  {
-    return this.http.get<surveyPageTwo[]>(this.baseUrl + 'surveyTwo');
+  loggedIn(): boolean {
+    return !this.jwtService.isTokenExpired(this.authToken);
   }
+
+  authenticate(user: User): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
+  }
+
+
+
 }
+
+
+
 
