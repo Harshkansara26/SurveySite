@@ -21,7 +21,14 @@ import { FormsModule } from '@angular/forms';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
 import { SurveyPage3Component } from './pages/surveypage3/survey-page3.component';
 import { Survey1ResponseModule } from './pages/survey1-response/survey1-response.module';
+import { AuthComponent } from './admin/auth/auth.component';
 
+import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
+import { AuthService } from './model/auth.service';
+
+export function jwtTokenGetter(): string {
+  return localStorage.getItem('id_token') ||'{}';
+}
 
 @NgModule({
   declarations: [
@@ -42,8 +49,13 @@ import { Survey1ResponseModule } from './pages/survey1-response/survey1-response
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: jwtTokenGetter
+      }
+    })
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

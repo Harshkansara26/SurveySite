@@ -1,0 +1,31 @@
+<main class="container">
+    <!-- message area -->
+    <div *ngIf='errorMessage != null' class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+
+    <div class="row">
+        <div class="offset-md-4 col-md-4">
+            <h1>Please Login</h1>
+            <form autocomplete='off' #form='ngForm' (ngSubmit)='authenticate(form)'>
+                <fieldset class="form-group">
+                    <label for="username">Username: </label>
+                    <input type="text" class="form-control" name="username" [(ngModel)]='user.username' placeholder="Enter User Name" required
+                        autofocus>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="password">Password: </label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]='user.password' placeholder="Enter Password" required>
+                </fieldset>
+                <span>or </span><a href="/register" value="Register">Register</a>
+
+
+                <fieldset class="form-group text-right">
+                    <button type="submit" class="btn btn-success" value="Login">Login</button>
+                    <button [routerLink]="['/home']" class="btn btn-warning">Cancel</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>

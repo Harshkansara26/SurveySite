@@ -21,7 +21,12 @@ const routes: Routes = [
   {path:'surveyPageOne', component: SurveyPage1Component, data: {title: 'SurveyPageOne'}},
   {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'}},
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},
+
   {path:'surveyPageOne/response', component: Survey1ResponseComponent, data: {title: 'SurveyPageOneResponse'}},
+
+  {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
+  {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+
   {path: '', redirectTo:'/home', pathMatch:'full'},
   {path: '**', redirectTo: '/home'}
 ];
