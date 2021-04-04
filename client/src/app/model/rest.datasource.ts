@@ -104,6 +104,15 @@ export class RestDataSource {
     return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
   }
 
+  logout(): Observable<any> {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
+
+    return this.http.get<any>(this.baseUrl + 'logout', this.httpOptions);
+  }
+
+
 
 
 }
