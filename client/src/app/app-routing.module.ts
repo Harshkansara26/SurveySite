@@ -6,6 +6,7 @@ import { CreateSurveyComponent } from './pages/create-survey/create-survey.compo
 import { HomeComponent } from './pages/home/home.component';
 import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.component';
 import { SurveyComponent } from './pages/survey/survey.component';
+import { Survey1ResponseComponent } from './pages/survey1-response/survey1-response.component';
 import { SurveyPage1Component } from './pages/surveypage1/survey-page1.component';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
 import { SurveyPage3Component } from './pages/surveypage3/survey-page3.component';
@@ -21,9 +22,13 @@ const routes: Routes = [
   {path:'surveyPageOne', component: SurveyPage1Component, data: {title: 'SurveyPageOne'}},
   {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'}},
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},
+
+  {path:'surveyPageOne/response', component: Survey1ResponseComponent, data: {title: 'SurveyPageOneResponse'}},
+
   {path:'surveyTwoRead', component: SurveyTwoReadComponent, data: {title: 'SurveyTwoRead'}},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
+
   {path: '', redirectTo:'/home', pathMatch:'full'},
   {path: '**', redirectTo: '/home'}
 ];
