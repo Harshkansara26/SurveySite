@@ -18,9 +18,9 @@ const PORT = 5000;
 // this is to connect to your backend server
 @Injectable({providedIn: 'root'})
 export class RestDataSource {
-  baseUrl: string;
-  authToken!: string;
-  user!: User;
+  private baseUrl: string;
+  private authToken!: string;
+  private user!: User;
 
   private httpOptions = {
   headers: new HttpHeaders({
@@ -43,12 +43,12 @@ export class RestDataSource {
 
   getSurveyOne(): Observable<surveyPageOne[]>
   {
-    return this.http.get<surveyPageOne[]>(this.baseUrl + 'surveyOne/list');
+    return this.http.get<surveyPageOne[]>(this.baseUrl + 'surveyOne/list', this.httpOptions);
   }
 
   deleteSurveyOne(id: string) {
     let backendRouterPath = 'surveyOne/delete/'+id // has to be same as on the backend server
-    return this.http.delete(this.baseUrl + backendRouterPath);
+    return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
 
   //survey Two
@@ -60,12 +60,12 @@ export class RestDataSource {
 
   getQuestions(): Observable<surveyPageTwo[]> {
     let backendRouterPath = 'surveyTwo/list' // has to be same as on the backend server
-    return this.http.get<surveyPageTwo[]>(this.baseUrl + backendRouterPath);
+    return this.http.get<surveyPageTwo[]>(this.baseUrl + backendRouterPath,  this.httpOptions);
   }
 
   surveyTwoDeleteAResponse(id: string) {
     let backendRouterPath = 'surveyTwo/delete/'+id // has to be same as on the backend server
-    return this.http.delete(this.baseUrl + backendRouterPath);
+    return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
 
   // getAQuestion(id: string): Observable<surveyPageTwo> {
@@ -112,6 +112,13 @@ export class RestDataSource {
     return this.http.get<any>(this.baseUrl + 'logout', this.httpOptions);
   }
 
+  private loadToken(): void {
+    const token = localStorage.getItem('id_token');
+    if(token){
+      this.authToken = token;
+      this.httpOptions.headers = this.httpOptions.headers.set('Authorization', this.authToken);
+    }
+  }
 
 
 
