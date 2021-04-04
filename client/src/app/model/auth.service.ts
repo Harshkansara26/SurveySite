@@ -22,4 +22,8 @@ export class AuthService {
   storeUserData(token: any, user: User): void {
     this.datasource.storeUserData(token, user);
   }
+
+  logout(): Observable<any> {
+    return this.datasource.logout();
+  }
 }
