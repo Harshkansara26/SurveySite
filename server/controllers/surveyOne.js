@@ -43,7 +43,7 @@ module.exports.processAddPage = (req, res, next) => {
 /* GET router for the DELETE Survey One Response page - DELETE */
 module.exports.performResponseDeletion =  (req, res, next) => {
     let id = req.params.id;
-    SurveyOne.deleteOne({_id: id}, (err) =>{
+    SurveyOne.remove({_id: id}, (err) =>{
         if(err) {
             console.log(err);
             res.end(err);

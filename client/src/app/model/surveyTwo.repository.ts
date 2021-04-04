@@ -6,37 +6,51 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {surveyPageTwo} from './surveyPageTwo.model';
 import { RestDataSource } from './rest.datasource';
+import { Router } from '@angular/router';
 
 
 @Injectable({providedIn: 'root'})
 export class SurveyTwoRepository
 {
-  private surveyTwo! : surveyPageTwo[];
-  private loaded = false;
+  //private surveyTwo! : surveyPageTwo[];
+  private questions : surveyPageTwo[] = [];
+  private question! : surveyPageTwo;
+  
 
-  constructor(private dataSource: RestDataSource) {}
+  constructor(private dataSource: RestDataSource, private router: Router) {
 
-  loadSurveys(): void
-  {
-    this.loaded = true;
-    this.dataSource.getSurveyTwo()
-    .subscribe(surveyTwo => this.surveyTwo = surveyTwo);
+    dataSource.getQuestions().subscribe(data => {
+      this.questions = data;
+    });
   }
 
-  getSurveyTwo(): surveyPageTwo[]
-  {
-    if (!this.loaded)
-    {
-      this.loadSurveys();
-    }
-    return this.surveyTwo;
+  getQuestions(): surveyPageTwo[] {
+    return [...this.questions]
   }
+
+  // getQuestionBy(id: string) {
+  //   this.dataSource.getAQuestion(id).subscribe(data => {
+  //     this.question = data
+  //   });
+  // }
+
+  // getQuestion() {
+  //   return this.question
+  // }
+
+
 
   saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>
   {
     return this.dataSource.saveSurveyTwo(surveyTwo);
   }
 
+  deleteResponseBy(id: string) {
+    this.dataSource.surveyTwoDeleteAResponse(id).subscribe(response => {
+      const updatedResponse = this.questions.filter(question => question._id !== response);
+      this.questions = [...updatedResponse]
+    });
 
 
+}
 }

@@ -12,8 +12,6 @@ import { surveyPageThree } from './surveyPageThree.model';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-
-
 const PROTOCOL = 'http';
 const PORT = 5000;
 
@@ -36,7 +34,7 @@ export class RestDataSource {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
-
+  //survey One 
   saveSurveyOne(surveyOne: surveyPageOne): Observable<surveyPageOne>
   {
     console.log(JSON.stringify(surveyOne));
@@ -53,6 +51,31 @@ export class RestDataSource {
     return this.http.delete(this.baseUrl + backendRouterPath);
   }
 
+  //survey Two
+  saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>
+  {
+    console.log(JSON.stringify(surveyTwo));
+    return this.http.post<surveyPageTwo>(this.baseUrl + 'surveyTwo/add', surveyTwo);
+  }
+
+  getQuestions(): Observable<surveyPageTwo[]> {
+    let backendRouterPath = 'surveyTwo/list' // has to be same as on the backend server
+    return this.http.get<surveyPageTwo[]>(this.baseUrl + backendRouterPath);
+  }
+
+  surveyTwoDeleteAResponse(id: string) {
+    let backendRouterPath = 'surveyTwo/delete/'+id // has to be same as on the backend server
+    return this.http.delete(this.baseUrl + backendRouterPath);
+  }
+
+  // getAQuestion(id: string): Observable<surveyPageTwo> {
+  //   let backendRouterPath = 'surveyOne/'+id // has to be same as on the backend server
+  //   return this.http.get<surveyPageTwo>(this.baseUrl + backendRouterPath);
+  // }
+
+
+
+  //survey Three
   saveSurveyThree(surveyThree: surveyPageThree): Observable<surveyPageThree>
   {
     console.log(JSON.stringify(surveyThree));
@@ -64,17 +87,8 @@ export class RestDataSource {
     return this.http.get<surveyPageThree[]>(this.baseUrl + 'surveyThree');
   }
 
-  saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>
-  {
-    console.log(JSON.stringify(surveyTwo));
-    return this.http.post<surveyPageTwo>(this.baseUrl + 'surveyTwo/add', surveyTwo);
-  }
-
-  getSurveyTwo(): Observable<surveyPageTwo[]>
-  {
-    return this.http.get<surveyPageTwo[]>(this.baseUrl + 'surveyTwo');
-  }
-
+  
+// authentication
   storeUserData(token: any, user: User): void {
     localStorage.setItem('id_token', 'Bearer ' + token);
     localStorage.setItem('user', JSON.stringify(user));
@@ -89,6 +103,8 @@ export class RestDataSource {
   authenticate(user: User): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
   }
+
+
 
 }
 
