@@ -24,6 +24,7 @@ import { AuthComponent } from './admin/auth/auth.component';
 
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { AuthService } from './model/auth.service';
+import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.component';
 
 export function jwtTokenGetter(): string {
   return localStorage.getItem('id_token') ||'{}';
@@ -41,7 +42,8 @@ export function jwtTokenGetter(): string {
     CreateSurveyComponent,
     SurveyPage1Component,
     SurveyPage2Component,
-    SurveyPage3Component
+    SurveyPage3Component,
+    SurveyTwoReadComponent
   ],
   imports: [
     BrowserModule,

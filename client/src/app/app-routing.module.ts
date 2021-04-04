@@ -4,6 +4,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { SurveyPage1Component } from './pages/surveypage1/survey-page1.component';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'surveyPageOne', component: SurveyPage1Component, data: {title: 'SurveyPageOne'}},
   {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'}},
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},
+  {path:'surveyTwoRead', component: SurveyTwoReadComponent, data: {title: 'SurveyTwoRead'}},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
   {path: '', redirectTo:'/home', pathMatch:'full'},
