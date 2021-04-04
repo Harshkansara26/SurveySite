@@ -1,57 +1,52 @@
 <div class="container-fluid">
-    <div *ngIf='formSubmitted' class="m-2 text-center">
-      <h2>Thanks!</h2>
-      <p>Thanks for filling this survey.</p>
-      <button class="btn btn-primary" routerLink='/survey'>Return to Surveys</button>
-    </div>
-  
-    <!-- Form -->
-    <form *ngIf='!formSubmitted' #form='ngForm' novalidate
-      (ngSubmit)='submitSurvey(form)' class="m-2">
-  
-      <div class="form-group">
-        <br>
-        <label>How frequently do you purchase things online?</label>
-        <input class="form-control" #name='ngModel' name='questionOne'
-        [(ngModel)]='surveyThree.questionOne' required>
-        <span *ngIf='submitted' class="text-danger">
-            Please enter your response
-        </span>
-      </div>
-  
-      <div class="form-group">
-        <label>Why do you prefer online shopping</label>
-        <input class="form-control" #address='ngModel' name='questionTwo'
-        [(ngModel)]='surveyThree.questionTwo' required>
-        <span *ngIf='submitted' class="text-danger">
-            Please enter your response
-        </span>
-      </div>
-  
-      <div class="form-group">
-        <label>How much have you spent for online shopping in past year?</label>
-        <input class="form-control" #city='ngModel' name='questionThree'
-        [(ngModel)]='surveyThree.questionThree' required>
-        <span *ngIf='submitted' class="text-danger">
-            Please enter your response
-        </span>
-      </div>
-  
-      <div class="form-group">
-        <label>What would be your best payment method when you buy from us?</label>
-        <input class="form-control" #province='ngModel' name='questionFour'
-        [(ngModel)]='surveyThree.questionFour' required>
-        <span *ngIf='submitted' class="text-danger">
-            Please enter your response
-        </span>
-      </div>
-  
-      <div class="text-center">
-        <button class="btn btn-secondary m-1" routerLink='/surveys'>Back</button>
-        <button class="btn btn-primary m-1" type="submit">Complete Survey</button>
-      </div>
-      <br><br><br>
-  
-    </form>
+  <div *ngIf='formSubmitted' class="m-2 text-center">
+    <h2>Thanks!</h2>
+    <p>Thanks for filling this survey.</p>
+    <button class="btn btn-primary" routerLink='/survey'>Return to Surveys</button>
   </div>
-  
+  <!-- Form -->
+  <form *ngIf='!formSubmitted' #form='ngForm' novalidate
+    (ngSubmit)='submitSurvey(form)' class="m-2">
+    <div class="form-group">
+      <br>
+      <label>What did you like about our product?</label>
+      <input class="form-control" #name='ngModel' name='questionOne'
+      [(ngModel)]='surveyThree.questionOne' required>
+      <span *ngIf='submitted' class="text-danger">
+          Please enter your response
+      </span>
+    </div>
+    <div class="form-group">
+      <label>How would you rate this product?</label>
+      <input class="form-control" #address='ngModel' name='questionTwo'
+      [(ngModel)]='surveyThree.questionTwo' required>
+      <span *ngIf='submitted' class="text-danger">
+          Please enter your response
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Who will you recommend this product?</label>
+      <input class="form-control" #city='ngModel' name='questionThree'
+      [(ngModel)]='surveyThree.questionThree' required>
+      <span *ngIf='submitted' class="text-danger">
+          Please enter your response
+      </span>
+    </div>
+    <div class="form-group">
+      <label>What is the one thing you would like to change about this product?</label>
+      <input class="form-control" #province='ngModel' name='questionFour'
+      [(ngModel)]='surveyThree.questionFour' required>
+      <span *ngIf='submitted' class="text-danger">
+          Please enter your response
+      </span>
+    </div>
+
+    <div class="text-center">
+      <button class="btn btn-secondary m-1" routerLink='/surveys'>Back</button>
+      <button class="btn btn-primary m-1" type="submit">Complete Survey</button>
+      <button class="btn btn-primary m-1" routerLink='/surveyPageThree/response'>View Responses</button>
+    </div>
+    <br><br><br>
+
+  </form>
+</div>
