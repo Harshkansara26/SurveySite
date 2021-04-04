@@ -17,13 +17,16 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
 import { SurveyPage1Component } from './pages/surveypage1/survey-page1.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
 import { SurveyPage3Component } from './pages/surveypage3/survey-page3.component';
 import { AuthComponent } from './admin/auth/auth.component';
 
 import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt';
 import { AuthService } from './model/auth.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SurveyListComponent } from './pages/survey-list/survey-list.component';
+
 
 export function jwtTokenGetter(): string {
   return localStorage.getItem('id_token') ||'{}';
@@ -41,7 +44,8 @@ export function jwtTokenGetter(): string {
     CreateSurveyComponent,
     SurveyPage1Component,
     SurveyPage2Component,
-    SurveyPage3Component
+    SurveyPage3Component,
+    SurveyListComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,10 @@ export function jwtTokenGetter(): string {
       config: {
         tokenGetter: jwtTokenGetter
       }
-    })
+    }),
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    // MaterialModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

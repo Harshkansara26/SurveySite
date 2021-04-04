@@ -1,93 +1,90 @@
-<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-<!-- head - Googlefonts link -->
-
 <div id="outside">
-<form id="survey-form" action="/my-handling-form-page" method="post">
-  <h1 id="title">Create Survey Manually</h1>
-  <p id="description"><b> </b> </p>
-  
-  <!-- ------------------Details---------------------------- -->
-  <fieldset>
-    <!-- groups of widgets that share the same purpose, for styling and semantic purposes -->
-    <legend>Questionnaire</legend>
+  <form [formGroup]="surveyForm" autocomplete="off">
+    <h1 id="title">Create Survey Manually</h1>
+    <p id="description"><b> </b></p>
     <!-- formally describes the purpose of the fieldset it is included inside. -->
-    <div>
-      <label id="name-label" for="name">Question 1: </label>
-      <input type="text" required id="name" name="user_name" placeholder="Enter question here"> <br></div>
-
-    <div>
-      <label id="name-label" for="name"></label>
-      <input type="text" required id="name" name="user_name" placeholder="Enter answer here"> </div>
-    
-    <!-- ------------------Radio Buttons-------------------------------- -->
-    <div>
-        <label id="name-label" for="name">Question 2: </label>
-        <input type="text" required id="name" name="user_name" placeholder="Enter question here">   </div>
-    <div>
-      <label for="Gender"></label>
-      <p>
-        <input type="radio" name="gender" value="other" checked>Option 1 <br>
-        <input type="radio" name="gender" value="other">Option 2 <br>
-        <input type="radio" name="gender" value="other">Option 3 <br>
-        <input type="radio" name="gender" value="other">Option 4
-      </p>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 ml-3">
+          <label class="form-label">Survey Title</label>
+          <input class="form-control" formControlName="name" />
+        </div>
+      </div>
     </div>
-    
-  </fieldset>
-  <!-- ------------------Checkboxes-------------------------------- -->
-  <div>
-    <label id="name-label" for="name">Question 3: </label>
-    <input type="text" required id="name" name="user_name" placeholder="Enter question here"> </div>
-
-  <fieldset>
-    <label for="Gender">Check All That Apply</label>
-    <p>
-      <input type="checkbox" name="t" value="t"> Option A<br>
-      <input type="checkbox" name="age" value="Car"> Option B<br>
-      <input type="checkbox" name="car" value="car"> Option C<br>
-      <input type="checkbox" name="work" value="work" checked> Option D<br>
-    </p>
-  </fieldset>
-  
-  <!-- -----------------Dropdown menus--------------------------------- -->
-  <div>
-    <label id="name-label" for="name">Question 4: </label>
-    <input type="text" required id="name" name="user_name" placeholder="Enter question here"> </div>
-  <fieldset>
-    <div>
-
-      <label for="politics"></label>
-      <select id="dropdown1">
-  <option value="A">Option A</option>
-  <option value="B">Option B</option>
-  <option value="C">Option C</option>  
-  <option value="D">Option D</option>
-  </select>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 ml-3">
+          <label class="form-label">Survey Title</label>
+        </div>
+        <div
+          class="card mb-3 ml-3"
+          formArrayName="questions"
+          *ngFor="
+            let item of surveyForm.get('questions')['controls'];
+            let i = index
+          "
+        >
+          <div class="card-body" [formGroupName]="i">
+            <div class="mb-3 ml-3">
+              <label class="form-label">Question Title</label>
+              <input class="form-control" formControlName="title" />
+            </div>
+            <div class="mb-3 ml-3">
+              <label class="form-label">Question Type</label>
+              <select
+                class="form-control"
+                formControlName="type"
+                (change)="onChangeQuestionType($event, i)"
+              >
+                <option value="">Select Any</option>
+                <option value="text">Text</option>
+                <option value="multiple choice">Multiple Choice</option>
+              </select>
+            </div>
+            <div
+              class="mb-3 ml-3"
+              *ngIf="
+                surveyForm.get('questions')['controls'][i].get('type').value ==
+                'multiple choice'
+              "
+            >
+              <div
+                formArrayName="options"
+                *ngFor="
+                  let item of surveyForm
+                    .get('questions')
+                    ['controls'][i].get('options')['controls'];
+                  let j = index
+                "
+              >
+              <div [formGroupName]="j">
+                <label class="form-label">Option - {{ j + 1 }}</label>
+                <input class="form-control" formControlName="value" />
+              </div>
+            </div>
+              <div class="mb-3">
+                <button (click)="addOption(i)">ADD OPTION</button>
+              </div>
+            </div>
+            <div
+              class="mb-3 ml-3"
+              *ngIf="
+                surveyForm.get('questions')['controls'][i].get('type').value !=
+                ''
+              "
+            >
+              <label class="form-label">Answer</label>
+              <input class="form-control" formControlName="answer" disabled />
+            </div>
+            <button class="btn-btn-block" (click)="addQuestion(i)">
+              ADD QUESTION
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </fieldset>
-
-  <!-- --------------------Text Areas------------------------------ -->
-  
-  <fieldset>
-    <legend>Additional Survey Details</legend>
-    <div>
-        <label id="name-label" for="name">Question 5: </label>
-        <input type="text" required id="name" name="user_name" placeholder="Enter question here"> </div>
-    <div>
-      <label for="msg"></label>
-      <p> </p>
-      <textarea id="msg" name="user_message" rows="4" cols="50" placeholder="Answer Here"></textarea>   </div>
-    <div>
-      <label for="msg">Upload file for references: </label><br>
-      <textarea id="msg2" name="user_message" rows="4" cols="50" placeholder="Attach file Here"></textarea>   </div>
-    <p>Upload here:
-      <button>Attach Files</button></p>
-  </fieldset>
-
-  <div id="submitbutton">
-    <button type="submit" id="submit">Submit</button>   </div>
-
-</form>
-  </div>
-
-https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms/Form_validation -->
+    <div class="d-block">
+      <button (click)="onCreateSurvey()">ADD SURVEY</button>
+    </div>
+  </form>
+</div>

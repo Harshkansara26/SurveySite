@@ -12,61 +12,62 @@ import { surveyPageThree } from './surveyPageThree.model';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-
-
 const PROTOCOL = 'http';
 const PORT = 5000;
 
 // this is to connect to your backend server
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class RestDataSource {
   baseUrl: string;
   authToken!: string;
   user!: User;
 
   private httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-    })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-control-Allow-Headers':
+        'Origin, X-Requested-With, Content-Type, Accept',
+    }),
   };
 
   constructor(private http: HttpClient, private jwtService: JwtHelperService) {
     this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
   }
 
-
-  saveSurveyOne(surveyOne: surveyPageOne): Observable<surveyPageOne>
-  {
+  saveSurveyOne(surveyOne: surveyPageOne): Observable<surveyPageOne> {
     console.log(JSON.stringify(surveyOne));
-    return this.http.post<surveyPageOne>(this.baseUrl + 'surveyOne/add', surveyOne);
+    return this.http.post<surveyPageOne>(
+      this.baseUrl + 'surveyOne/add',
+      surveyOne
+    );
   }
 
-  getSurveyOne(): Observable<surveyPageOne[]>
-  {
+  getSurveyOne(): Observable<surveyPageOne[]> {
     return this.http.get<surveyPageOne[]>(this.baseUrl + 'surveyOne');
   }
 
-  saveSurveyThree(surveyThree: surveyPageThree): Observable<surveyPageThree>
-  {
+  saveSurveyThree(surveyThree: surveyPageThree): Observable<surveyPageThree> {
     console.log(JSON.stringify(surveyThree));
-    return this.http.post<surveyPageThree>(this.baseUrl + 'surveyThree/add', surveyThree);
+    return this.http.post<surveyPageThree>(
+      this.baseUrl + 'surveyThree/add',
+      surveyThree
+    );
   }
 
-  getSurveyThree(): Observable<surveyPageThree[]>
-  {
+  getSurveyThree(): Observable<surveyPageThree[]> {
     return this.http.get<surveyPageThree[]>(this.baseUrl + 'surveyThree');
   }
 
-  saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>
-  {
+  saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo> {
     console.log(JSON.stringify(surveyTwo));
-    return this.http.post<surveyPageTwo>(this.baseUrl + 'surveyTwo/add', surveyTwo);
+    return this.http.post<surveyPageTwo>(
+      this.baseUrl + 'surveyTwo/add',
+      surveyTwo
+    );
   }
 
-  getSurveyTwo(): Observable<surveyPageTwo[]>
-  {
+  getSurveyTwo(): Observable<surveyPageTwo[]> {
     return this.http.get<surveyPageTwo[]>(this.baseUrl + 'surveyTwo');
   }
 
@@ -85,8 +86,11 @@ export class RestDataSource {
     return this.http.post<any>(this.baseUrl + 'login', user, this.httpOptions);
   }
 
+  getData(url) {
+    return this.http.get(`${this.baseUrl}${url}`, this.httpOptions);
+  }
+
+  postData(url, data) {
+    return this.http.post(`${this.baseUrl}${url}`, data, this.httpOptions);
+  }
 }
-
-
-
-

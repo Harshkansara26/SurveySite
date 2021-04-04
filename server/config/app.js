@@ -37,6 +37,7 @@ let usersRouter = require('../routes/users');
 let surveyOneRouter = require('../routes/surveyOne');
 let surveyTwoRouter = require('../routes/surveyTwo');
 let surveyThreeRouter = require('../routes/surveyThree');
+let surveyRouter = require('../routes/survey')
 
 
 let app = express();
@@ -90,7 +91,7 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
   }).catch(err => {
     return done(err, false);
   })
-});
+});     
 passport.use(strategy);
 //routing
 app.use('/', indexRouter);
@@ -98,6 +99,7 @@ app.use('/users', usersRouter);
 app.use('/surveyOne', surveyOneRouter);
 app.use('/surveyTwo', surveyTwoRouter);
 app.use('/surveyThree', surveyThreeRouter);
+app.use('/survey', surveyRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
