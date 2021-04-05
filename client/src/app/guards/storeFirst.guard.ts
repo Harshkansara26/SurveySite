@@ -9,7 +9,7 @@ export class StoreFirstGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         const isAuth = this.authService.authenticated
         if (!isAuth) {
-            this.router.navigateByUrl('/login')
+            this.router.navigateByUrl('/login');
         }
         return true
     }

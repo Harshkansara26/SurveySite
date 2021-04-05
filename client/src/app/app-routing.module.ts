@@ -19,9 +19,9 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent,data: {title: 'About'}},
   {path: 'survey', component: SurveyComponent, data: {title: 'Survey'}},
   {path: 'contact', component: ContactComponent, data: {title: 'Contact'}},
-  {path: 'create-survey', component: CreateSurveyComponent, data: {title: 'Contact'}},
+  {path: 'create-survey', component: CreateSurveyComponent, data: {title: 'CreateSurvey'}, canActivate: [StoreFirstGuard]},
   {path:'surveyPageOne', component: SurveyPage1Component, data: {title: 'SurveyPageOne'}},
-  {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'}, canActivate: [StoreFirstGuard]},
+  {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'},},
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},
 
   {path:'surveyPageOne/response', component: Survey1ResponseComponent, data: {title: 'SurveyPageOneResponse'}},
