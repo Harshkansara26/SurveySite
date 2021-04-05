@@ -54,3 +54,43 @@ module.exports.performResponseDeletion =  (req, res, next) => {
         }
     });
 }
+
+//Survey One Edit
+
+/* POST router for the EDIT Survey One page - UPDATE */
+module.exports.processSurveyOneResUpdate = (req, res, next) => {
+    let id = req.params.id;
+    console.log('vamsi test  ' + id);
+    let updatedSurveyOne = SurveyOne ({
+        _id: id,
+        questionOne: req.body.questionOne,
+        questionTwo: req.body.questionTwo,
+        questionThree: req.body.questionThree,
+        questionFour: req.body.questionFour,
+    });
+
+    updatedSurveyOne.updateOne({_id: id}, updatedSurveyOne, (err) => {
+        if(err){
+            console.log(err);
+            res.end(err); 
+        } else {
+            // refresh booklist
+            return res.json(updatedSurveyOne);
+           
+        }
+    });
+};
+
+/* GET router for the EDIT Book page - UPDATE */
+module.exports.displayEditResponse = (req, res, next) => {
+    let id = req.params.id;
+    SurveyOne.findById(id, (err, resposeToEdit) =>{
+        if(err) {
+            console.log(err);
+            res.end(err);
+        } else {
+            // show the edit view
+            return res.json(resposeToEdit);
+        }
+    });
+};

@@ -50,6 +50,17 @@ export class RestDataSource {
     let backendRouterPath = 'surveyOne/delete/'+id // has to be same as on the backend server
     return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
+    //Survey One Edit
+    getSurveyOneRes(id: string): Observable<surveyPageOne> {
+      let backendRouterPath = 'surveyOne/'+id // has to be same as on the backend server
+      return this.http.get<surveyPageOne>(this.baseUrl + backendRouterPath);
+    }
+  
+    updateSurveyOneRes(response: surveyPageOne): Observable<surveyPageOne> {
+      let backendRouterPath = 'surveyOne/'+response._id  // has to be same as on the backend server
+      return this.http.post<surveyPageOne>(this.baseUrl + backendRouterPath, response);
+    }
+
 
   //survey Two
   saveSurveyTwo(surveyTwo: surveyPageTwo): Observable<surveyPageTwo>

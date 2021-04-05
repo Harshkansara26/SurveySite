@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class surveyPageOne
 {
   // tslint:disable-next-line: variable-name
-  public _id?: number;
+  public _id?: string;
   public questionOne?: string;
   public questionTwo?: string;
   public questionThree?: string;
