@@ -1,0 +1,12 @@
+.mydiv {
+    position:fixed;
+    top: 50%;
+    left: 15%;
+    right: 15%;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    
+}
+
+.tagline {
+    color: #238a91;
+}

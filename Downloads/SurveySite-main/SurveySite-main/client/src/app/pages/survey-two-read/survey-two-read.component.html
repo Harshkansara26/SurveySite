@@ -1,0 +1,38 @@
+<main class="container-fluid p-5">
+    <div class="row">
+
+            <!-- <br /> -->
+            <table *ngIf="questions.length > 0" class="table table-sm table-responsive-sm table-bordered table-striped table-hover">
+                <!-- Header Row -->
+                <thead>
+                    <tr >
+                        <th class="text-center" scope="col">Question One</th>
+                        <th class="text-center" scope="col">Question Two</th>
+                        <th class="text-center" scope="col">Question Three</th>
+                        <th class="text-center" scope="col">Question Four</th>
+                        <!-- <th class="text-center" scope="col">Price</th> -->
+                        <!-- if (typeof displayName == 'string' && displayName) -->
+                        <th class="text-center" scope="col"></th>
+                        <!-- if close -->
+                    </tr >
+                </thead>
+    
+                <!-- Repeatable Template Row -->
+                <tbody>
+                <!--  for(let count = 0; count < books.length; count++) -->
+                    <tr *ngFor='let question of questions'>
+                            <td class="text-center" scope="row">{{ question.questionOne }}</td>
+                            <td class="text-center">{{ question.questionTwo }}</td>
+                            <td class="text-center">{{ question.questionThree }}</td>
+                            <td class="text-center">{{ question.questionFour }}</td>
+                            
+                            <td class="text-center" scope="row">
+                                <button (click)="onDeleteResponse(question._id)" class="btn bt-sm btn-danger m-3"> Delete</button>
+                            </td>
+                            <!-- if close
+                    </tr>
+                     <!-- for close -->
+                </tbody>
+            </table>
+        </div>
+    </main>
