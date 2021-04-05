@@ -37,6 +37,12 @@ export class SurveyThreeRepository
     return this.dataSource.saveSurveyThree(surveyThree);
   }
 
+  deleteSurveyThreeBy(id: string) {
+    this.dataSource.deleteSurveyThree(id).subscribe(response1 => {
+      const updatedSurveyOne = this.surveyThree.filter(response => response._id !== response1);
+      this.surveyThree = [...updatedSurveyOne]
+    });
+  }
 
 
 }

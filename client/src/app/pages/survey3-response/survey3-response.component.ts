@@ -24,8 +24,8 @@ export class Survey3ResponseComponent implements OnInit {
     return this.repository.getSurveyThree();
   }
 
-  onDeleteRes(id: string) {
-    return this.repository.deleteSurveyThreeBy(id);
-  }
+  // onDeleteRes(id: string) {
+  //   return this.repository.deleteSurveyThreeBy(id);
+  // }
 
 }
