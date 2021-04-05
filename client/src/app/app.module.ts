@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
 import { SurveyPage3Component } from './pages/surveypage3/survey-page3.component';
+import { Survey3ResponseModule } from './pages/survey3-response/survey3-response.module';
 
 import { AuthComponent } from './admin/auth/auth.component';
 
