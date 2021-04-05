@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { CreateSurveyComponent } from './pages/create-survey/create-survey.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SurveyListComponent } from './pages/survey-list/survey-list.component';
 import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { Survey1ResponseComponent } from './pages/survey1-response/survey1-response.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'survey', component: SurveyComponent, data: {title: 'Survey'}},
   {path: 'contact', component: ContactComponent, data: {title: 'Contact'}},
   {path: 'create-survey', component: CreateSurveyComponent, data: {title: 'Contact'}},
+  {path: 'survey-list',component: SurveyListComponent,data: { title: 'Survey List' }},
   {path:'surveyPageOne', component: SurveyPage1Component, data: {title: 'SurveyPageOne'}},
   {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'}, canActivate: [StoreFirstGuard]},
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},

@@ -120,6 +120,13 @@ export class RestDataSource {
     }
   }
 
+  getData(url) {
+    return this.http.get(`${this.baseUrl}${url}`, this.httpOptions);
+  }
+
+  postData(url, data) {
+    return this.http.post(`${this.baseUrl}${url}`, data, this.httpOptions);
+  }
 
 
 }
