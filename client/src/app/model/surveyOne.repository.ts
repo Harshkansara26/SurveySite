@@ -8,11 +8,12 @@ import {surveyPageOne} from './surveyPageOne.model';
 import { RestDataSource } from './rest.datasource';
 import { Router } from '@angular/router';
 
+
 @Injectable({providedIn: 'root'})
 export class SurveyOneRepository
 {
   private surveyOne : surveyPageOne[] = [];
-  private response! : surveyPageOne;
+  private response : surveyPageOne;
   
   //private loaded = false;
 
@@ -38,6 +39,30 @@ export class SurveyOneRepository
     this.dataSource.deleteSurveyOne(id).subscribe(response1 => {
       const updatedSurveyOne = this.surveyOne.filter(response => response._id !== response1);
       this.surveyOne = [...updatedSurveyOne]
+    });
+  }
+
+
+  //Survey One Edit
+  getResponseBy(id: string) {
+    this.dataSource.getSurveyOneRes(id).subscribe(data => {
+      this.response = data
+    });
+  }
+
+  getQuestions() {
+    return this.response
+  }
+
+  updateResponce(response: surveyPageOne) {
+    
+    this.dataSource.updateSurveyOneRes(response).subscribe(data => {
+      this.response = data
+      const updatedSurveyOne = [...this.surveyOne];
+      const oldResponseIndex = updatedSurveyOne.findIndex(p => p._id === this.response._id);
+      updatedSurveyOne[oldResponseIndex] = this.response;
+      this.surveyOne = updatedSurveyOne;
+      this.router.navigate(['surveyPageOne/response']);
     });
   }
 

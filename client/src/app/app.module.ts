@@ -28,6 +28,8 @@ import { JwtModule, JwtHelperService, JwtInterceptor } from '@auth0/angular-jwt'
 import { AuthService } from './model/auth.service';
 import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.component';
 import { Survey1ResponseComponent } from './pages/survey1-response/survey1-response.component';
+//Survey One Edit
+import { SurveyOneEditComponent } from './pages/survey-one-edit/survey-one-edit.component';
 
 export function jwtTokenGetter(): string {
   return localStorage.getItem('id_token') ||'{}';
@@ -47,7 +49,9 @@ export function jwtTokenGetter(): string {
     SurveyPage2Component,
     SurveyPage3Component,
     SurveyTwoReadComponent,
-    Survey1ResponseComponent
+    Survey1ResponseComponent,
+    //Survey One Edit
+    SurveyOneEditComponent
   ],
   imports: [
     BrowserModule,
