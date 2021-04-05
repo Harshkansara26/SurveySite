@@ -43,10 +43,12 @@ export class RestDataSource {
 
   getSurveyOne(): Observable<surveyPageOne[]>
   {
+    this.loadToken();
     return this.http.get<surveyPageOne[]>(this.baseUrl + 'surveyOne/list', this.httpOptions);
   }
 
   deleteSurveyOne(id: string) {
+    this.loadToken();
     let backendRouterPath = 'surveyOne/delete/'+id // has to be same as on the backend server
     return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
@@ -57,8 +59,9 @@ export class RestDataSource {
     }
   
     updateSurveyOneRes(response: surveyPageOne): Observable<surveyPageOne> {
+      this.loadToken();
       let backendRouterPath = 'surveyOne/'+response._id  // has to be same as on the backend server
-      return this.http.post<surveyPageOne>(this.baseUrl + backendRouterPath, response);
+      return this.http.post<surveyPageOne>(this.baseUrl + backendRouterPath, response, this.httpOptions);
     }
 
 
@@ -70,11 +73,13 @@ export class RestDataSource {
   }
 
   getQuestions(): Observable<surveyPageTwo[]> {
+    this.loadToken();
     let backendRouterPath = 'surveyTwo/list' // has to be same as on the backend server
     return this.http.get<surveyPageTwo[]>(this.baseUrl + backendRouterPath,  this.httpOptions);
   }
 
   surveyTwoDeleteAResponse(id: string) {
+    this.loadToken();
     let backendRouterPath = 'surveyTwo/delete/'+id // has to be same as on the backend server
     return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
@@ -95,7 +100,14 @@ export class RestDataSource {
 
   getSurveyThree(): Observable<surveyPageThree[]>
   {
-    return this.http.get<surveyPageThree[]>(this.baseUrl + 'surveyThree');
+    this.loadToken();
+    return this.http.get<surveyPageThree[]>(this.baseUrl + 'surveyThree', this.httpOptions);
+  }
+
+  deleteSurveyThree(id: string) {
+    this.loadToken();
+    let backendRouterPath = 'surveyThree/delete/'+id // has to be same as on the backend server
+    return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
 
   

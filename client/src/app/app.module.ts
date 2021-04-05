@@ -55,7 +55,7 @@ export function jwtTokenGetter(): string {
     Survey1ResponseComponent,
     
     //Survey One Edit
-    SurveyOneEditComponent
+    SurveyOneEditComponent,
     SurveyListComponent
   ],
   imports: [
