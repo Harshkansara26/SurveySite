@@ -9,6 +9,7 @@ import { SurveyListComponent } from './pages/survey-list/survey-list.component';
 import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { Survey1ResponseComponent } from './pages/survey1-response/survey1-response.component';
+import { Survey3ResponseComponent } from './pages/survey3-response/survey3-response.component';
 import { SurveyPage1Component } from './pages/surveypage1/survey-page1.component';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
 import { SurveyPage3Component } from './pages/surveypage3/survey-page3.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},
 
   {path:'surveyPageOne/response', component: Survey1ResponseComponent, data: {title: 'SurveyPageOneResponse'}},
-
+  {path:'surveyPageThree/response', component: Survey3ResponseComponent, data: {title: 'SurveyPageThreeResponse'}},
 
   {path:'surveyTwoRead', component: SurveyTwoReadComponent, data: {title: 'SurveyTwoRead'}},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
