@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestDataSource } from 'src/app/model/rest.datasource';
 import { SurveyService } from 'src/app/services/survey.service';
 
+declare var M: any;
+
 @Component({
   selector: 'app-survey-list',
   templateUrl: './survey-list.component.html',
@@ -27,4 +29,13 @@ export class SurveyListComponent implements OnInit {
       }
     });
   }
+
+  onDeleteResponse(id: string) {
+    if(confirm('Are you sure?')== true)
+    this.dataSource.deleteSurvey(id).subscribe((res)=> {
+      this.getSurveys();
+      M.toast({html: 'Deleted successfully', classes: 'rounded'});
+    })
+  }
+  
 }

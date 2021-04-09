@@ -1,6 +1,6 @@
 <div id="outside">
   <form [formGroup]="surveyForm" autocomplete="off">
-    <h1 id="title">Create Survey</h1>
+    <!-- <h1 id="title">Create Survey Manually</h1> -->
     <p id="description"><b> </b></p>
     <!-- formally describes the purpose of the fieldset it is included inside. -->
     <div class="row">
@@ -16,31 +16,29 @@
         <div class="mb-3 ml-3">
           <!-- <label class="form-label">Survey Title</label> -->
         </div>
-        <div
-          class="card mb-3 ml-3"
-          formArrayName="questions"
-          *ngFor="
-            let item of surveyForm.get('questions')['controls'];
-            let i = index
-          "
-        >
+        
+        <div class="card mb-3 ml-3" formArrayName="questions"
+          *ngFor="let item of surveyForm.get('questions')['controls']; let i = index">
           <div class="card-body" [formGroupName]="i">
             <div class="mb-3 ml-3">
               <label class="form-label">Question Title</label>
               <input class="form-control" formControlName="title" />
             </div>
+
+<!-- 
             <div class="mb-3 ml-3">
               <label class="form-label">Question Type</label>
-              <select
+               <select
                 class="form-control"
                 formControlName="type"
-                (change)="onChangeQuestionType($event, i)"
-              >
+              > 
                 <option value="">Select Any</option>
-                <option value="text">Text</option>
-                <option value="multiple choice">Multiple Choice</option>
-              </select>
-            </div>
+                <option value="text">Text</option> 
+                 <option value="multiple choice">Multiple Choice</option> 
+               </select> 
+          </div> -->
+
+
             <div
               class="mb-3 ml-3"
               *ngIf="
@@ -62,9 +60,9 @@
                 <input class="form-control" formControlName="value" />
               </div>
             </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <button (click)="addOption(i)">ADD OPTION</button>
-              </div>
+              </div> -->
             </div>
             <div
               class="mb-3 ml-3"
@@ -74,18 +72,20 @@
               "
             >
               <label class="form-label">Answer</label>
-              <input class="form-control" formControlName="answer" disabled />
+              <input class="form-control" formControlName="answer"/>
             </div>
-            <button class="btn-btn-block" (click)="addQuestion(i)">
+
+             <!-- <button class="btn-btn-block" (click)="addQuestion(i)">
               ADD QUESTION
-            </button>
+            </button>  -->
+
           </div>
         </div>
       </div>
     </div>
-    <div class="d-block">
-      <button (click)="onCreateSurvey()">ADD SURVEY</button>
+    <div class="d-block mb-5">
+      <button (click)="onCreateSurvey()">SUBMIT SURVEY</button>
+      <br><br><br> <br><br><br>
     </div>
   </form>
-  <br><br>
 </div>
