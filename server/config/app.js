@@ -38,6 +38,7 @@ let surveyOneRouter = require('../routes/surveyOne');
 let surveyTwoRouter = require('../routes/surveyTwo');
 let surveyThreeRouter = require('../routes/surveyThree');
 let surveyRouter = require('../routes/survey')
+let surveyResponseRouter = require('../routes/surveyResponse')
 
 
 let app = express();
@@ -100,6 +101,7 @@ app.use('/surveyOne', surveyOneRouter);
 app.use('/surveyTwo', surveyTwoRouter);
 app.use('/surveyThree', surveyThreeRouter);
 app.use('/survey', surveyRouter)
+app.use('/fillSurvey', surveyResponseRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

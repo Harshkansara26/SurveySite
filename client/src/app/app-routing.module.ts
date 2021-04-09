@@ -14,6 +14,8 @@ import { Survey3ResponseComponent } from './pages/survey3-response/survey3-respo
 import { SurveyPage1Component } from './pages/surveypage1/survey-page1.component';
 import { SurveyPage2Component } from './pages/surveypage2/survey-page2.component';
 import { SurveyPage3Component } from './pages/surveypage3/survey-page3.component';
+import { CreateSurveyUpdateComponent } from './pages/create-survey-update/create-survey-update.component';
+import { SurveyListResponseComponent } from './pages/survey-list-response/survey-list-response.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path:'surveyTwoRead', component: SurveyTwoReadComponent, data: {title: 'SurveyTwoRead'}},
   //  Survey One Edit
   {path:'surveyPageOne/update/:reaponseId', component: SurveyOneEditComponent, data: {title: 'SurveyOneEdit'}},
+  {path:'fillCreatedSurvey/:surveyId', component: CreateSurveyUpdateComponent, data: {title: 'FillSurvey'}},
+  {path:'surveyResponses', component: SurveyListResponseComponent, data: {title: 'SurveyResponse'}},
 
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},

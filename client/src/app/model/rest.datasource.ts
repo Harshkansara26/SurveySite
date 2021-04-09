@@ -143,12 +143,33 @@ export class RestDataSource {
     }
   }
 
+  //create survey template
   getData(url) {
     return this.http.get(`${this.baseUrl}${url}`, this.httpOptions);
   }
 
   postData(url, data) {
     return this.http.post(`${this.baseUrl}${url}`, data, this.httpOptions);
+  }
+
+  // displaySurveys(id: string) {
+  //   let backendRouterPath = 'fillSurvey/'+id 
+  //   return this.http.get(this.baseUrl + backendRouterPath);
+  // }
+
+  //delete Survey Template
+  deleteSurvey(id: string) {
+    this.loadToken();
+    let backendRouterPath = 'survey/delete/'+id // has to be same as on the backend server
+    return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
+  }
+
+
+  //delete Survey Reponses
+  deleteSurveyResponse(id: string) {
+    this.loadToken();
+    let backendRouterPath = 'fillSurvey/delete/'+id // has to be same as on the backend server
+    return this.http.delete(this.baseUrl + backendRouterPath, this.httpOptions);
   }
 
 

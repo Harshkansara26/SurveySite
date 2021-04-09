@@ -33,6 +33,8 @@ import { SurveyTwoReadComponent } from './pages/survey-two-read/survey-two-read.
 import { Survey1ResponseComponent } from './pages/survey1-response/survey1-response.component';
 //Survey One Edit
 import { SurveyOneEditComponent } from './pages/survey-one-edit/survey-one-edit.component';
+import { CreateSurveyUpdateComponent } from './pages/create-survey-update/create-survey-update.component';
+import { SurveyListResponseComponent } from './pages/survey-list-response/survey-list-response.component';
 
 export function jwtTokenGetter(): string {
   return localStorage.getItem('id_token') ||'{}';
@@ -56,7 +58,9 @@ export function jwtTokenGetter(): string {
     
     //Survey One Edit
     SurveyOneEditComponent,
-    SurveyListComponent
+    SurveyListComponent,
+    CreateSurveyUpdateComponent,
+    SurveyListResponseComponent
   ],
   imports: [
     BrowserModule,
