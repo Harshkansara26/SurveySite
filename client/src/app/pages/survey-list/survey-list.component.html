@@ -15,7 +15,8 @@
           <td>{{ item.name }}</td>
           <td>
             <button btn-primary [routerLink]="['/fillCreatedSurvey/', item._id]"><i class="fa fa-edit">Fill Survey</i></button>
-            <button (click)="onDeleteResponse(item._id)" class="ml-1" ><i class="fa fa-trash"></i></button>
+
+     <!-- <button (click)="onDeleteResponse(item._id)"  class="ml-1"><i class="fa fa-trash"></i></button> -->
           </td>
         </tr>
       </tbody>

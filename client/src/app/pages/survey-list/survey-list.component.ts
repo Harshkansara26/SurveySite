@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RestDataSource } from 'src/app/model/rest.datasource';
 import { SurveyService } from 'src/app/services/survey.service';
 
+
 declare var M: any;
 
 @Component({
@@ -11,11 +12,15 @@ declare var M: any;
   styleUrls: ['./survey-list.component.css'],
 })
 export class SurveyListComponent implements OnInit {
+
+
+
   public surveys = [];
   constructor(
     private surveyServices: SurveyService,
     private httpClient: HttpClient,
-    private dataSource: RestDataSource
+    private dataSource: RestDataSource,
+    //private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -30,12 +35,13 @@ export class SurveyListComponent implements OnInit {
     });
   }
 
-  onDeleteResponse(id: string) {
-    if(confirm('Are you sure?')== true)
-    this.dataSource.deleteSurvey(id).subscribe((res)=> {
-      this.getSurveys();
-      M.toast({html: 'Deleted successfully', classes: 'rounded'});
-    })
-  }
-  
+  // onDeleteResponse(id: string) {
+  //   if(confirm('Are you sure?')== true)
+  //   this.dataSource.deleteSurvey(id).subscribe((res)=> {
+  //     this.getSurveys();
+  //     M.toast({html: 'Deleted successfully', classes: 'rounded'});
+  //   })
+  // }
+
+
 }
