@@ -23,7 +23,7 @@ const routes: Routes = [
   
   {path: 'home', component: HomeComponent, data: {title: 'Home'}},
   {path: 'about', component: AboutComponent,data: {title: 'About'}},
-  {path: 'survey', component: SurveyComponent, data: {title: 'Survey'}},
+  {path: 'survey-pre', component: SurveyComponent, data: {title: 'Survey'}},
   {path: 'contact', component: ContactComponent, data: {title: 'Contact'}},
   {path: 'create-survey', component: CreateSurveyComponent, data: {title: 'CreateSurvey'}, canActivate: [StoreFirstGuard]},
   {path: 'survey-list',component: SurveyListComponent,data: { title: 'Survey List' }},
