@@ -11,9 +11,10 @@ import { surveyPageTwo } from './surveyPageTwo.model';
 import { surveyPageThree } from './surveyPageThree.model';
 import { User } from './user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from "../../environments/environment";
 
-const PROTOCOL = 'http';
-const PORT = 5000;
+// const PROTOCOL = 'http';
+// const PORT = 5000;
 
 // this is to connect to your backend server
 @Injectable({providedIn: 'root'})
@@ -31,7 +32,8 @@ export class RestDataSource {
   };
 
   constructor(private http: HttpClient, private jwtService: JwtHelperService) {
-    this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    //this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+    this.baseUrl = `${environment.backendUrl}`;
   }
 
   //survey One 
@@ -113,7 +115,7 @@ export class RestDataSource {
   
 // authentication
   storeUserData(token: any, user: User): void {
-    localStorage.setItem('id_token', 'Bearer ' + token);
+    localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
