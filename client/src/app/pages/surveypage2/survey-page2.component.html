@@ -18,34 +18,44 @@
             Please enter your response
         </span>
       </div>
-  
+      <br>
       <div class="form-group">
         <label>What is your job title?</label>
-        <input class="form-control" #address='ngModel' name='questionTwo'
-        [(ngModel)]='surveyTwo.questionTwo' required>
-        <span *ngIf='submitted' class="text-danger">
-            Please enter your response
-        </span>
+        <div>
+          <input type = "radio" name='questionTwo' value="Engineer"
+          [(ngModel)]='surveyTwo.questionTwo' required>  Engineer
+          <input type = "radio" name='questionTwo' value="Student"
+          [(ngModel)]='surveyTwo.questionTwo' required>  Student
+          <input type = "radio" name='questionTwo' value="Teacher"
+          [(ngModel)]='surveyTwo.questionTwo' required>  Teacher
+          <span *ngIf='submitted' class="text-danger">
+              Please enter your response
+          </span>
+        </div>
       </div>
-  
+      <br>
       <div class="form-group">
-        <label>Have you found what you were looking for?</label>
-        <input class="form-control" #city='ngModel' name='questionThree'
+        <label>Topics you would like to include in this website?</label>
+        <input class="form-control" #province='ngModel' name='questionFour'
         [(ngModel)]='surveyTwo.questionThree' required>
         <span *ngIf='submitted' class="text-danger">
             Please enter your response
         </span>
       </div>
-  
+      <br>
       <div class="form-group">
-        <label>Topics you would like to include in this website?</label>
-        <input class="form-control" #province='ngModel' name='questionFour'
-        [(ngModel)]='surveyTwo.questionFour' required>
-        <span *ngIf='submitted' class="text-danger">
-            Please enter your response
-        </span>
+        <label>Have you found what you were looking for?</label>
+        <div>
+          <select name="my-select" [(ngModel)]="surveyTwo.questionFour" (change)="selectChange()" required>
+              <OPTION VALUE=Yes >Yes 
+                <OPTION VALUE=No >No
+          </select>
+          <span *ngIf='submitted' class="text-danger">
+              Please enter your response
+          </span>
+        </div>
       </div>
-  
+      <br>
       <div class="text-center">
         <button class="btn btn-secondary m-1" routerLink='/survey'>Back</button>
         <button class="btn btn-primary m-1" type="submit">Complete Survey</button>
