@@ -13,6 +13,6 @@ router.get('/list', passport.authenticate('jwt', {session: false}),  surveyThree
 router.post('/add', surveyThreeController.processAddPage);
 
 /* GET router for the DELETE Survey Response page - DELETE */
-router.delete('/delete/:id',passport.authenticate('jwt', {session: false}),  surveyThreeController.performResponseDeletion);
+router.delete('/delete/:id', passport.authenticate('jwt', {session: false}),  surveyThreeController.performResponseDeletion);
 
 module.exports = router;

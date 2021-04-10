@@ -30,9 +30,9 @@ const routes: Routes = [
   {path:'surveyPageOne', component: SurveyPage1Component, data: {title: 'SurveyPageOne'}},
   {path:'surveyPageTwo', component: SurveyPage2Component, data: {title: 'SurveyPageTwo'}, },
   {path:'surveyPageThree', component: SurveyPage3Component, data: {title: 'SurveyPageThree'}},
-  {path:'surveyPageOne/response', component: Survey1ResponseComponent, data: {title: 'SurveyPageOneResponse'}},
-  {path:'surveyPageThree/response', component: Survey3ResponseComponent, data: {title: 'SurveyPageThreeResponse'}},
-  {path:'surveyTwoRead', component: SurveyTwoReadComponent, data: {title: 'SurveyTwoRead'}},
+  {path:'surveyPageOne/response', component: Survey1ResponseComponent, data: {title: 'SurveyPageOneResponse'},canActivate: [StoreFirstGuard]},
+  {path:'surveyPageThree/response', component: Survey3ResponseComponent, data: {title: 'SurveyPageThreeResponse'}, canActivate: [StoreFirstGuard]},
+  {path:'surveyTwoRead', component: SurveyTwoReadComponent, data: {title: 'SurveyTwoRead'}, canActivate: [StoreFirstGuard]},
   //  Survey One Edit
   {path:'surveyPageOne/update/:reaponseId', component: SurveyOneEditComponent, data: {title: 'SurveyOneEdit'}},
   {path:'fillCreatedSurvey/:surveyId', component: CreateSurveyUpdateComponent, data: {title: 'FillSurvey'}},
