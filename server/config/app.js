@@ -18,7 +18,6 @@ let localStrategy = passportLocal.Strategy;
 let flash = require('connect-flash');
 
 
-
 // database setup
 let mongoose = require('mongoose');
 let DB = require('./db');
@@ -47,12 +46,14 @@ let app = express();
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(express.static(path.join(__dirname, '../../node_modules')));
+app.use('/', express.static(path.join(__dirname, '../../public/SurveySite/')));
 
 app.use(cors());
 
@@ -102,6 +103,9 @@ app.use('/surveyTwo', surveyTwoRouter);
 app.use('/surveyThree', surveyThreeRouter);
 app.use('/survey', surveyRouter)
 app.use('/fillSurvey', surveyResponseRouter)
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, '../../public/SurveySite', 'index.html'))
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

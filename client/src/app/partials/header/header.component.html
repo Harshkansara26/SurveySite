@@ -24,7 +24,13 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/survey"><i class="fab fa-elementor"></i> Survey </a>
                 </li>
-        
+
+                <div *ngIf='isLoggedIn()'>
+                <li class="nav-item">
+                  <a class="nav-link" href="/allsurveyResponses"><i class="fab fa-elementor"></i>Survey Responses</a>
+                </li>
+              </div>
+
         
                 <li class="nav-item">
                   <a class="nav-link" href="/contact"><i class="fas fa-mobile-alt"></i> Contact </a>

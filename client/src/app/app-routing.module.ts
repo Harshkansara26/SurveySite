@@ -36,8 +36,8 @@ const routes: Routes = [
   //  Survey One Edit
   {path:'surveyPageOne/update/:reaponseId', component: SurveyOneEditComponent, data: {title: 'SurveyOneEdit'}},
   {path:'fillCreatedSurvey/:surveyId', component: CreateSurveyUpdateComponent, data: {title: 'FillSurvey'}},
-  {path:'surveyResponses', component: SurveyListResponseComponent, data: {title: 'SurveyResponse'}},
-  {path:'allsurveyResponses', component: AllSurveyResponsesComponent, data: {title: 'AllSurveyResponse'}},
+  {path:'surveyResponses', component: SurveyListResponseComponent, data: {title: 'SurveyResponse'}, canActivate: [StoreFirstGuard]},
+  {path:'allsurveyResponses', component: AllSurveyResponsesComponent, data: {title: 'AllSurveyResponse'},canActivate: [StoreFirstGuard]},
 
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: 'login', data: {title: 'Login'}, redirectTo: '/admin/auth', pathMatch: 'full'},
