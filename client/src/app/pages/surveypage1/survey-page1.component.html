@@ -18,34 +18,49 @@
           Please enter your response
       </span>
     </div>
-
+    <br>
     <div class="form-group">
       <label>How would you rate this product?</label>
-      <input class="form-control" #address='ngModel' name='questionTwo'
-      [(ngModel)]='surveyOne.questionTwo' required>
-      <span *ngIf='submitted' class="text-danger">
-          Please enter your response
-      </span>
+        <div>
+          <input type = "radio" name='questionTwo' value="average"
+          [(ngModel)]='surveyOne.questionTwo' required>  Average
+          <input type = "radio" name='questionTwo' value="good"
+          [(ngModel)]='surveyOne.questionTwo' required>  Good
+          <input type = "radio" name='questionTwo' value="excellent"
+          [(ngModel)]='surveyOne.questionTwo' required>  Excellent
+          <span *ngIf='submitted' class="text-danger">
+              Please enter your response
+          </span>
+        </div>
     </div>
-
+    <br>
     <div class="form-group">
-      <label>Who will you recommend this product?</label>
-      <input class="form-control" #city='ngModel' name='questionThree'
-      [(ngModel)]='surveyOne.questionThree' required>
-      <span *ngIf='submitted' class="text-danger">
-          Please enter your response
-      </span>
-    </div>
+      <label>Who recommended you this product?</label>
+        <div>
+          <select name="my-select" [(ngModel)]="surveyOne.questionThree" (change)="selectChange()" required>
+              <OPTION VALUE=Friends >Friends 
+                <OPTION VALUE=Family >Family
+                <OPTION VALUE=Internet >Internet
+                <OPTION VALUE='Company Website' >Company Website
+                <OPTION VALUE=Others >Others
+          </select>
 
+          <span *ngIf='submitted' class="text-danger">
+              Please enter your response
+          </span>
+      </div>
+    </div>
+    <br>
     <div class="form-group">
       <label>What is the one thing you would like to change about this product?</label>
-      <input class="form-control" #province='ngModel' name='questionFour'
+
+      <input class="form-control" #province='ngModel' name='questionFour' rows = "5" cols = "60"
       [(ngModel)]='surveyOne.questionFour' required>
       <span *ngIf='submitted' class="text-danger">
           Please enter your response
       </span>
     </div>
-
+    <br>
     <div class="text-center">
       <button class="btn btn-secondary m-1" routerLink='/survey'>Back</button>
       <button class="btn btn-primary m-1" type="submit">Complete Survey</button>
