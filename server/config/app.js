@@ -96,7 +96,7 @@ let strategy = new JWTStrategy(jwtOptions, (jwt_payload, done) => {
 });
 passport.use(strategy);
 //routing
-app.use('/random', indexRouter);
+app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/surveyOne', surveyOneRouter);
 app.use('/surveyTwo', surveyTwoRouter);
