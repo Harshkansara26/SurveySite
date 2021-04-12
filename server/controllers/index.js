@@ -138,7 +138,7 @@ module.exports.processRegisterPage = (req, res, next) => {
           
 
           return passport.authenticate('local')(req, res, () => {
-              return res.redirect('http://localhost:4200/login');
+              return res.redirect('/login');
           })
       }
   })
