@@ -5,8 +5,8 @@ https://survey-site-techno-geeks.herokuapp.com/home
 
 ## How to run the app?
 
-Run npm install to install required dependencies.
-Run ng serve to run the angular app.
+* Run npm install to install required dependencies.
+* Run ng serve to run the angular app.
 
 ### Start the MEAN Stack backend server
 * cd backend to enter into the backend folder.
